@@ -1,0 +1,178 @@
+<div class="page-home">
+    
+    <!-- INTRO: O que é este lugar? (mais longo, confessional, caótico) -->
+    <section class="layer intro-layer">
+        <div class="container">
+            <div class="intro-content">
+                <div class="intro-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <div class="intro-text">
+                    <img src="Icon.png" alt="Liber Occultorum Icon" class="site-icon-2">
+                    <h2 class="layer-title">Update II — Estruturas do Sagrado e do Caos</h2>
+                    <h2 class="layer-title">O que é este lugar?</h2>
+
+
+                    <p class="confessional-text">
+                        Isto não é um portal de respostas. 
+                        É um arquivo. Um repositório de símbolos, mitos, doutrinas, rupturas.
+                        Nada aqui pretende converter. Nada aqui pretende salvar.
+                        Apenas registrar.
+                    </p>
+
+                    <p class="confessional-text">
+                        O oculto não é fantasia. É profundidade.
+                        É aquilo que permanece invisível porque exige descida.
+                        Cada tradição, cada rito, cada fragmento filosófico aqui reunido
+                        é uma tentativa humana de organizar o caos,
+                        e o caos nunca foi um erro. O caos é origem.
+                    </p>
+
+                    <p class="confessional-text">
+                        Este espaço não conduz. Não guia.
+                        Ele expõe.
+                        Camadas sobre camadas, sistemas sobre sistemas,
+                        crenças que colidem, ideias que se contradizem.
+                        O visitante escolhe se observa ou se atravessa.
+                    </p>
+
+                    <div class="divider-ornament">
+                        <span class="ornament-dot"></span>
+                        <span class="ornament-line"></span>
+                        <span class="ornament-dot"></span>
+                        <span class="ornament-line"></span>
+                        <span class="ornament-dot"></span>
+                    </div>
+
+                    <p class="confessional-text" style="font-style: italic; opacity: 0.8;">
+                        Nem tudo é para todos. 
+                        Nem tudo deve ser.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CARROSSEL DE CONCEITOS (substitui a definição de tarot) -->
+    <section class="layer carousel-layer">
+        <div class="container">
+            <h2 class="layer-title">O que você vai encontrar aqui</h2>
+            <p class="layer-subtitle">
+                Três pilares por vez. Passeie pelos conceitos que construímos juntos.
+            </p>
+
+            <div class="carousel-container">
+                <button class="carousel-arrow carousel-arrow-left">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="carousel-track-container">
+                    <div class="carousel-track">
+                        <!-- Os cards serão inseridos via JS a partir de um array -->
+                    </div>
+                </div>
+
+                <button class="carousel-arrow carousel-arrow-right">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="carousel-dots">
+                <!-- Dots serão inseridos via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CAMINHOS DE ESTUDO (refatorados) -->
+    <section class="layer paths-layer">
+        <div class="container">
+            <h2 class="layer-title">Escolha seu caminho</h2>
+            <p class="layer-subtitle">
+                Não há ordem certa, apenas trilhas que fazem sentido para você agora.
+            </p>
+            
+            <div class="paths-grid">
+                <!-- 01: Estudos gerais do oculto -->
+                <a href="#" class="path-card" data-path="estudos">
+                    <div class="path-content">
+                        <span class="path-number">01</span>
+                        <h3>Quem quer estudar o oculto</h3>
+                        <p>Mitologias, filosofias, simbolismo, práticas – a porta de entrada para todas as tradições que formam o conhecimento ocidental e oriental.</p>
+                        <div class="path-indicator">
+                            <span>Explorar</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    <div class="path-decoration">
+                        <i class="fas fa-spider-web"></i>
+                    </div>
+                </a>
+                
+                <!-- 02: Quem quer entender cartas (leitores de tarot) -->
+                <a href="#" class="path-card" data-path="cartas">
+                    <div class="path-content">
+                        <span class="path-number">02</span>
+                        <h3>Quem quer entender cartas</h3>
+                        <p>Arcanos como personagens, símbolos como linguagem. Estude cada carta como um universo em si, sem decoreba, com profundidade.</p>
+                        <div class="path-indicator">
+                            <span>Explorar</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    <div class="path-decoration">
+                        <i class="fas fa-clover"></i>
+                    </div>
+                </a>
+                
+                <!-- 03: Quem quer fazer leituras (prática de mesa) -->
+                <a href="#" class="path-card" data-path="mesa">
+                    <div class="path-content">
+                        <span class="path-number">03</span>
+                        <h3>Quem quer praticar leituras</h3>
+                        <p>Métodos, spreads, narrativas. Aprenda a conectar cartas em histórias que fazem sentido, confiando na intuição e no contexto.</p>
+                        <div class="path-indicator">
+                            <span>Explorar</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                    <div class="path-decoration">
+                        <i class="fas fa-cards"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DICAS VIVAS (carregadas de JSON) -->
+    <section class="layer tips-layer">
+        <div class="container">
+            <h2 class="layer-title">Dicas vivas, não regras</h2>
+            <p class="layer-subtitle">
+                Fragmentos que mudam, se renovam, evoluem. Centenas de dicas para você encontrar uma nova perspectiva a cada visita.
+            </p>
+            
+            <div class="tips-container">
+                <!-- Botão anterior (agora posicionado à esquerda do card) -->
+                <button class="tip-nav-btn prev-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="tip-slider">
+                    <!-- Os tips cards serão inseridos via JS a partir do JSON -->
+                </div>
+
+                <!-- Botão próximo (posicionado à direita do card) -->
+                <button class="tip-nav-btn next-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="layer-closing">
+                <p>
+                    O oculto não se entrega de uma vez. Ele se revela em fragmentos, em sincronicidades, em cada dica que faz sentido na hora certa. 
+                    <strong>Liber Occultorum é vivo, feito de caos e liberdade.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
