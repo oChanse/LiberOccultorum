@@ -76,7 +76,7 @@ padding: 0 20px;
 }
 .logo-container {
 display: flex;
-flex-direction: column;
+flex-direction: row;
 justify-content: center;
 }
 .site-logo {
@@ -428,4 +428,25 @@ cursor: not-allowed;
 .btn:disabled:hover {
 background-color: var(--primary-color);
 color: white;
+}
+.logo-container {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.site-icon {
+width: 10%;
+height: 10%;
+object-fit: contain;
+filter: drop-shadow(0 0 15px rgba(140, 0, 255, 0.6));
+}
+.logo-text {
+display: flex;
+flex-direction: column;
+}
+.site-icon-2 {
+width: 50%;
+height: 50%;
+object-fit: contain;
+filter: drop-shadow(0 0 105px rgba(140, 0, 255, 0.6));
 }

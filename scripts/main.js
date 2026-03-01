@@ -1,54 +1,29 @@
-
-
-
 window.bibliotheca = window.bibliotheca || {
     currentPage: 'home',
     theme: 'light',
     isMobileMenuOpen: false
 };
-
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Bibliotheca inicializando...');
-    
-    
     initTheme();
-    
-    
     initNavigation();
-    
-    
     loadPage('home');
-    
-    
     setCurrentYear();
-    
-    
     carregarContador();
-    
-    
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
     document.getElementById('mobileMenuToggle').addEventListener('click', toggleMobileMenu);
-    
     console.log('Bibliotheca inicializada com sucesso');
 });
-
-
 async function carregarContador() {
     const key = "bibliotheca-visitas";
-
     try {
         const response = await fetch(
             `https://countapi.mileshilliard.com/api/v1/hit/${key}`
         );
-
         const data = await response.json();
-
         const contadorEl = document.getElementById("contador");
         if (contadorEl) {
             contadorEl.textContent = data.value.toLocaleString('pt-BR');
-            
-            
             contadorEl.style.transform = 'scale(1.1)';
             setTimeout(() => {
                 contadorEl.style.transform = 'scale(1)';
@@ -62,43 +37,32 @@ async function carregarContador() {
         }
     }
 }
-
-
 function setCurrentYear() {
     const yearElement = document.getElementById('currentYear');
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
 }
-
-
 function initTheme() {
     const savedTheme = localStorage.getItem('bibliotheca-theme') || 'light';
     window.bibliotheca.theme = savedTheme;
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
 }
-
-
 function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
     window.bibliotheca.theme = newTheme;
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('bibliotheca-theme', newTheme);
     updateThemeIcon(newTheme);
 }
-
-
 function updateThemeIcon(theme) {
     const icon = document.querySelector('#themeToggle i');
     if (icon) {
         icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
     }
 }
-
-
 function toggleMobileMenu() {
     const mobileNav = document.querySelector('.mobile-nav');
     if (mobileNav) {
@@ -107,10 +71,7 @@ function toggleMobileMenu() {
         window.bibliotheca.isMobileMenuOpen = !isVisible;
     }
 }
-
-
 function initNavigation() {
-    
     const desktopLinks = document.querySelectorAll('.desktop-nav .nav-link');
     desktopLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -120,8 +81,6 @@ function initNavigation() {
             loadPage(page);
         });
     });
-    
-    
     const mobileLinks = document.querySelectorAll('.mobile-nav-link');
     mobileLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -129,8 +88,6 @@ function initNavigation() {
             const page = this.getAttribute('data-page');
             setActiveNavLink(page);
             loadPage(page);
-            
-            
             const mobileNav = document.querySelector('.mobile-nav');
             if (window.innerWidth <= 768 && mobileNav.style.display === 'block') {
                 mobileNav.style.display = 'none';
@@ -139,41 +96,26 @@ function initNavigation() {
         });
     });
 }
-
-
 function setActiveNavLink(page) {
-    
     const allLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
     allLinks.forEach(link => {
         link.classList.remove('active');
     });
-    
-    
     const activeDesktopLink = document.querySelector(`.nav-link[data-page="${page}"]`);
     const activeMobileLink = document.querySelector(`.mobile-nav-link[data-page="${page}"]`);
-    
     if (activeDesktopLink) activeDesktopLink.classList.add('active');
     if (activeMobileLink) activeMobileLink.classList.add('active');
-    
-    
     window.bibliotheca.currentPage = page;
 }
-
-
 function loadPage(page) {
     console.log(`Carregando página: ${page}`);
-    
     const contentArea = document.getElementById('contentArea');
-    
-    
     contentArea.innerHTML = `
         <div class="loading-container">
             <div class="spinner"></div>
             <p>Carregando ${getPageTitle(page)}...</p>
         </div>
     `;
-    
-    
     fetch(`parts/${page}.html`)
         .then(response => {
             if (!response.ok) {
@@ -182,18 +124,10 @@ function loadPage(page) {
             return response.text();
         })
         .then(html => {
-            
             contentArea.innerHTML = html;
-            
-            
             loadPageCSS(page);
-            
-            
             loadPageScript(page);
-            
-            
             window.scrollTo(0, 0);
-            
             console.log(`Página ${page} carregada com sucesso`);
         })
         .catch(error => {
@@ -209,8 +143,6 @@ function loadPage(page) {
             `;
         });
 }
-
-
 function getPageTitle(page) {
     const titles = {
         'home': 'Início',
@@ -218,11 +150,8 @@ function getPageTitle(page) {
         'cartas': 'Cartas',
         'mesa': 'Mesa'
     };
-    
     return titles[page] || page;
 }
-
-
 function waitForElement(selector, callback, maxAttempts = 30) {
     let attempts = 0;
     const interval = setInterval(() => {
@@ -237,54 +166,35 @@ function waitForElement(selector, callback, maxAttempts = 30) {
         attempts++;
     }, 100);
 }
-
-
 function loadPageCSS(page) {
-    
     const existingPageCSS = document.getElementById('page-css');
     if (existingPageCSS) {
         existingPageCSS.remove();
     }
-    
-    
     const link = document.createElement('link');
     link.id = 'page-css';
     link.rel = 'stylesheet';
     link.href = `visuals/${page}.css`;
-    
-    
     link.onload = function() {
         console.log(`CSS ${page}.css carregado com sucesso`);
     };
-    
     link.onerror = function() {
         console.warn(`CSS ${page}.css não encontrado, usando estilo padrão`);
     };
-    
     document.head.appendChild(link);
 }
-
-
 function loadPageScript(page) {
     console.log(`Carregando script: ${page}.js`);
-    
-    
     const existingPageScript = document.getElementById('page-script');
     if (existingPageScript) {
         console.log('Removendo script anterior');
         existingPageScript.remove();
     }
-    
-    
     const script = document.createElement('script');
     script.id = 'page-script';
     script.src = `scripts/${page}.js`;
-    
-    
     script.onload = function() {
         console.log(`Script ${page}.js carregado com sucesso`);
-        
-        
         if (typeof window.initHomePage === 'function' && page === 'home') {
             console.log('Executando initHomePage...');
             setTimeout(() => {
@@ -292,11 +202,8 @@ function loadPageScript(page) {
             }, 100);
         }
     };
-    
     script.onerror = function() {
         console.warn(`Script ${page}.js não encontrado ou não carregado`);
-        
-        
         if (page === 'home') {
             console.log('Tentando inicializar home sem script específico...');
             setTimeout(() => {
@@ -306,14 +213,10 @@ function loadPageScript(page) {
             }, 300);
         }
     };
-    
     document.body.appendChild(script);
 }
-
-
 window.loadPage = loadPage;
 window.setActiveNavLink = setActiveNavLink;
 window.toggleTheme = toggleTheme;
 window.toggleMobileMenu = toggleMobileMenu;
-
 console.log('main.js carregado com sucesso');

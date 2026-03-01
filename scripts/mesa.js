@@ -1421,39 +1421,26 @@ function iniciarSistemaMesa() {
     
 
 function setupMobileInterface() {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    if (!isMobile) return;
-    
-    console.log('Configurando interface mobile...');
-    
-    
-    setupMobileSidebar();
-    
-    
-    setupCardSwipe();
-    
-    
-    setupTouchInteractions();
-    
-    
-    setupBottomSheet();
-    
-    
-    setupOrientationDetection();
-    
-    
-    optimizeForTouch();
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  if (!isMobile) return;
 
-    setTimeout(fixCardsGridLayout, 100);
-    
-    
-    setTimeout(() => {
-        const sidebar = document.querySelector('.mesa-sidebar');
-        if (sidebar && window.innerWidth <= 768) {
-            sidebar.style.maxHeight = '60vh';
-        }
-    }, 100);
+  console.log('Configurando interface mobile...');
+
+  document.querySelectorAll('.card-thumbnail').forEach(thumb => {
+    thumb.setAttribute('draggable', 'false');
+  });
+
+  setupMobileSidebar();
+  setupCardSwipe(); 
+  setupTouchInteractions();
+  setupBottomSheet();
+  setupOrientationDetection();
+  optimizeForTouch();
+
+  const cardsArea = document.getElementById('cardsArea');
+  if (cardsArea) {
+    cardsArea.style.minHeight = '300px';
+  }
 }
 function fixCardsGridLayout() {
     const cardsGrid = document.querySelector('.cards-grid');
@@ -1670,29 +1657,27 @@ function setupCardSwipe() {
 }
 
 function setupTouchInteractions() {
-    const cardsArea = document.getElementById('cardsArea');
-    
-    
-    document.querySelectorAll('.card-thumbnail').forEach(thumb => {
-        thumb.addEventListener('click', (e) => {
-            if (e.target.closest('.card-thumb-actions')) return;
-            
-            const cardId = thumb.dataset.cardId;
-            const card = tarotCards.find(c => c.id == cardId);
-            
-            if (card) {
-                const cardsAreaRect = cardsArea.getBoundingClientRect();
-                const x = cardsAreaRect.width / 2;
-                const y = cardsAreaRect.height / 2;
-                addCardToTable(card, x, y);
-                
-                
-                thumb.style.transform = 'scale(0.95)';
-                setTimeout(() => thumb.style.transform = '', 200);
-            }
-        });
+  const cardsArea = document.getElementById('cardsArea');
+
+  document.querySelectorAll('.card-thumbnail').forEach(thumb => {
+    thumb.addEventListener('click', (e) => {
+      if (e.target.closest('.card-thumb-actions')) return;
+
+      const cardId = thumb.dataset.cardId;
+      const card = tarotCards.find(c => c.id == cardId);
+
+      if (card) {
+        const rect = cardsArea.getBoundingClientRect();
+        const x = 60 + Math.random() * (rect.width - 180);
+        const y = 90 + Math.random() * (rect.height - 270);
+        addCardToTable(card, x, y);
+
+        thumb.style.transform = 'scale(0.95)';
+        setTimeout(() => thumb.style.transform = '', 200);
+      }
     });
-    
+  });
+
     
     cardsArea.addEventListener('touchstart', handleTouchStart, { passive: false });
     cardsArea.addEventListener('touchmove', handleTouchMove, { passive: false });

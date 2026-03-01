@@ -1,44 +1,28 @@
-<div class="estudos-container" id="estudos-container">
-    <button class="sidebar-toggle-btn" id="sidebarToggleBtn">
-        <i class="fas fa-bars"></i>
-        <span>Estudos</span>
-    </button>
-
-    <aside class="estudos-sidebar" id="estudosSidebar">
-        <div class="sidebar-header">
-            <h3><i class="fas fa-book-open"></i> Biblioteca</h3>
-            <button class="close-sidebar" id="closeSidebar">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-
-        <div class="sidebar-search">
-            <input type="text" id="studySearch" placeholder="Buscar estudos...">
-            <i class="fas fa-search"></i>
-        </div>
-
-        <div class="sidebar-content" id="sidebarContent">
-            <div class="loading-studies">
-                <div class="spinner"></div>
-                <p>Carregando estudos...</p>
-            </div>
-        </div>
-
-        <div class="sidebar-footer">
-            <div class="study-progress">
-                <div class="progress-header">
-                    <span>Progresso</span>
-                    <span id="progressPercentage">0%</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-                </div>
-                <div class="progress-stats">
-                    <span id="completedStudies">0</span> de <span id="totalStudies">0</span> lidos
+<div class="biblioteca-container" id="bibliotecaContainer">
+    <!-- Cabeçalho com busca e filtros -->
+    <div class="biblioteca-header">
+        <div class="header-top">
+            <h1 class="biblioteca-titulo">
+                <i class="fas fa-scroll"></i>
+                A Biblioteca Oculta
+            </h1>
+            <div class="global-progress" id="globalProgress">
+                <span class="progress-label">Progresso</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="globalProgressFill" style="width:0%"></div>
+                    </div>
+                    <span class="progress-text" id="globalProgressText">0%</span>
                 </div>
             </div>
+        </div>
 
-            <div class="study-filters">
+        <div class="header-controls">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchStudies" placeholder="Buscar estudos...">
+            </div>
+            <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">
                     <i class="fas fa-layer-group"></i> Todos
                 </button>
@@ -53,31 +37,28 @@
                 </button>
             </div>
         </div>
-    </aside>
+    </div>
 
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Grid de categorias (cada categoria é um card expansível) -->
+    <div class="categorias-grid" id="categoriasGrid"></div>
 
-    <main class="estudos-main" id="estudosMain">
-        <div class="welcome-screen">
-            <div class="welcome-content">
-                <i class="fas fa-book-reader"></i>
-                <h2>Biblioteca de Estudos</h2>
-                <p>Selecione um estudo na barra lateral para começar sua leitura</p>
-                <div class="welcome-stats">
-                    <div class="welcome-stat">
-                        <span class="stat-number" id="welcomeTotalStudies">0</span>
-                        <span class="stat-label">Estudos disponíveis</span>
-                    </div>
-                    <div class="welcome-stat">
-                        <span class="stat-number" id="welcomeCompleted">0</span>
-                        <span class="stat-label">Concluídos</span>
-                    </div>
-                    <div class="welcome-stat">
-                        <span class="stat-number" id="welcomeFavorites">0</span>
-                        <span class="stat-label">Favoritos</span>
-                    </div>
-                </div>
-            </div>
+    <!-- Visualização de estudo em tela cheia -->
+    <div class="estudo-visualizacao hidden" id="estudoVisualizacao">
+        <button class="btn-voltar" id="btnVoltar">
+            <i class="fas fa-arrow-left"></i>
+            Voltar à Biblioteca
+        </button>
+        <div class="estudo-wrapper" id="estudoWrapper"></div>
+        <div class="estudo-navegacao" id="estudoNavegacao">
+            <button class="nav-btn prev" id="navPrev" disabled>
+                <i class="fas fa-chevron-left"></i>
+                <span>Anterior</span>
+            </button>
+            <span class="nav-indicator" id="navIndicator"></span>
+            <button class="nav-btn next" id="navNext">
+                <span>Próximo</span>
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
-    </main>
+    </div>
 </div>
